@@ -1,0 +1,32 @@
+<window title="User Onboarding" width="700px" border="bold"
+		viewModel="@id('vm') @init('com.example.view.SearchViewModel')"
+		apply="org.zkoss.bind.BindComposer">
+
+	<separator height="30px"/>
+	<separator/>
+	<hlayout valign="middle">
+		<textbox id="keyword" placeholder="Enter user email :" value="@bind(vm.enteredText)" />
+		<button iconSclass="z-icon-search" onClick="@command('search')" />
+	</hlayout>
+
+	<separator height="20px"/>
+
+	<!-- Conditionally display entered text as a checkbox -->
+	<hlayout visible="@bind(vm.searchInitiated)">
+		<checkbox label="@bind(vm.enteredText)" checked="true"/>
+	</hlayout>
+
+
+	<!-- Conditionally display onboarding text -->
+	<label visible="@bind(vm.nextClicked)" value="@load(vm.onboardingText)" />
+
+	<separator height="50px"/>
+
+	<div style="background:light grey" align="right">
+		<hlayout valign=" ">
+			<button label="Cancel" />
+			<button label="Next" onClick="@command('next')" />
+		</hlayout>
+	</div>
+
+</window>

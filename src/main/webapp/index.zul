@@ -1,0 +1,58 @@
+<zk xmlns:n="native">
+	<style>
+		.onboarding-window {
+		text-align: center;
+		padding: 20px;
+		}
+		.onboarding-step {
+		margin-top: 20px;
+		}
+		.onboarding-button {
+		margin: 10px;
+		}
+	</style>
+	<window title="User Onboarding" border="normal" width="600px" height="400px"
+			viewModel="@id('vm') @init('com.example.UserOnboardingViewModel')"
+			sclass="onboarding-window" closable="false" maximizable="false" minimizable="false">
+		<attribute name="onCreate">
+			<![CDATA[
+                self.doOverlapped();
+                self.setPosition("center");
+            ]]>
+		</attribute>
+		<!-- Step 1: Enter User Email -->
+		<vbox id="step1" visible="@bind(vm.step1Visible)" sclass="onboarding-step">
+			<label value="Enter User Email" style="font-size:16px; font-weight:bold;" />
+			<textbox id="emailBox" value="@bind(vm.email)" width="300px" />
+			<hbox>
+				<button label="Cancel" onClick="@command('cancel')" sclass="onboarding-button" />
+				<button label="Next" onClick="@command('nextStep1')" sclass="onboarding-button" />
+			</hbox>
+		</vbox>
+		<!-- Step 2: Select User -->
+		<vbox id="step2" visible="@bind(vm.step2Visible)" sclass="onboarding-step">
+			<textbox id="selectedEmail" value="@bind(vm.email)" readonly="true" width="300px" />
+			<checkbox id="userCheck" label="@bind(vm.matchedUser)" checked="@bind(vm.userSelected)" />
+			<hbox>
+				<button label="Cancel" onClick="@command('cancel')" sclass="onboarding-button" />
+				<button label="Next" onClick="@command('nextStep2')" sclass="onboarding-button" />
+			</hbox>
+		</vbox>
+		<!-- Step 3: Select Options -->
+		<vbox id="step3" visible="@bind(vm.step3Visible)" sclass="onboarding-step">
+			<label value="Select Services:" style="font-size:16px; font-weight:bold;" />
+			<checkbox label="Platform" checked="@bind(vm.platformSelected)" />
+			<checkbox label="Posit Cloud" checked="@bind(vm.positCloudSelected)" />
+			<checkbox label="Redshift" checked="@bind(vm.redshiftSelected)" />
+			<hbox>
+				<button label="Cancel" onClick="@command('cancel')" sclass="onboarding-button" />
+				<button label="Next" onClick="@command('nextStep3')" sclass="onboarding-button" />
+			</hbox>
+		</vbox>
+		<!-- Step 4: Confirmation -->
+		<vbox id="step4" visible="@bind(vm.step4Visible)" sclass="onboarding-step">
+			<label value="User has been onboarded and Notification was sent" style="font-size:16px; font-weight:bold;" />
+			<button label="Done" onClick="@command('done')" sclass="onboarding-button" />
+		</vbox>
+	</window>
+</zk>
