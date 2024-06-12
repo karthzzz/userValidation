@@ -29,6 +29,7 @@
 				<button label="Next" onClick="@command('nextStep1')" sclass="onboarding-button" />
 			</hbox>
 		</vbox>
+
 		<!-- Step 2: Select User -->
 		<vbox id="step2" visible="@bind(vm.step2Visible)" sclass="onboarding-step">
 			<textbox id="selectedEmail" value="@bind(vm.email)" readonly="true" width="300px" />
@@ -40,10 +41,13 @@
 		</vbox>
 		<!-- Step 3: Select Options -->
 		<vbox id="step3" visible="@bind(vm.step3Visible)" sclass="onboarding-step">
+			<label value="@bind(vm.email)" style="font-size:18px; font-weight:semi-bold;"/>
 			<label value="Select Services:" style="font-size:16px; font-weight:bold;" />
+			<hbox>
 			<checkbox label="Platform" checked="@bind(vm.platformSelected)" />
 			<checkbox label="Posit Cloud" checked="@bind(vm.positCloudSelected)" />
 			<checkbox label="Redshift" checked="@bind(vm.redshiftSelected)" />
+			</hbox>
 			<hbox>
 				<button label="Cancel" onClick="@command('cancel')" sclass="onboarding-button" />
 				<button label="Next" onClick="@command('nextStep3')" sclass="onboarding-button" />
@@ -51,6 +55,7 @@
 		</vbox>
 		<!-- Step 4: Confirmation -->
 		<vbox id="step4" visible="@bind(vm.step4Visible)" sclass="onboarding-step">
+			<label value="@bind(vm.email)" style="font-size:18px; font-weight:semi-bold;"/>
 			<label value="User has been onboarded and Notification was sent" style="font-size:16px; font-weight:bold;" />
 			<button label="Done" onClick="@command('done')" sclass="onboarding-button" />
 		</vbox>
